@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<constant name="struts.objectFactory" value="spring"/>
+	
+	<package name="default" extends="struts-default">
+	
+		<default-action-ref name="index"></default-action-ref>
+	
+		<action name="index" class="workorder.action.WorkorderAction">
+			<result>/WEB-INF/views/index.jsp</result>
+		</action>
+		
+		<action name="addOrder" class="workorder.action.WorkorderAction" method="addOrder">
+			<result>/WEB-INF/views/addOrder.jsp</result>
+			<result type="redirectAction" name="input">index</result>
+		</action>
+		
+		<action name="addSave" class="workorder.action.WorkorderAction" method="addSave">
+			<result type="redirectAction">
+				<param name="actionName">list</param>
+				<param name="msg">保存成功</param>
+			</result>
+			<result name="input">/WEB-INF/views/addOrder.jsp</result>
+		</action>
+		
+		<action name="list" class="workorder.action.WorkorderAction" method="list">
+			<result>/WEB-INF/views/list.jsp</result>
+		</action>
+	
+	</package>
+
+</struts>    
